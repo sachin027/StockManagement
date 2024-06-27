@@ -1,0 +1,48 @@
+﻿
+@model List<Sachin_452_Models.ViewModel.ProductModel>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_LayoutUserPage.cshtml";
+}
+
+@if (TempData["success"] != null)
+{
+    <script>
+            toastr.success('@TempData["success"]');
+    </script>
+}
+@if (TempData["error"] != null)
+{
+    <script>
+        toastr.error('@TempData["error"]');
+    </script>
+}
+
+
+<table class="table table-hover table-light">
+    <thead class="table-primary">
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Product Type</th>
+            <th>Price</th>
+            <th>Add to cart</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.productName</td>
+                <td>@d.ProductDescription</td>
+                <td>@d.ProductType</td>
+                <td>@d.Price</td>
+                <td>
+                    <a href="~/User/AddToCart?id=@d.ProductId" class="btn btn-success">Add to Cart</a>
+                    @*<a href="~/User/AddToCart" class="btn btn-success">Add to Cart</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

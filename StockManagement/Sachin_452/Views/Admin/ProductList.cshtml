@@ -1,0 +1,50 @@
+﻿@model List<Sachin_452_Models.DBContext.Products>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_LayoutStockDashboardPage.cshtml";
+}
+
+@if (TempData["success"] != null)
+{
+    <script>
+            toastr.success('@TempData["success"]');
+    </script>
+}
+@if (TempData["error"] != null)
+{
+    <script>
+        toastr.error('@TempData["error"]');
+    </script>
+}
+
+
+<table class="table table-hover table-light">
+    <thead class="table-primary">
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Product Type</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.productName</td>
+                <td>@d.ProductDescription</td>
+                <td>@d.ProductType</td>
+                <td>@d.Quantity</td>
+                <td>@d.Price</td>
+                <td>
+                    <a href="~/Admin/EditProduct?id=@d.ProductId" class="btn btn-success">Edit</a>
+                    <a href="~/Admin/DeleteProduct?id=@d.ProductId" class="btn btn-danger">Delete</a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

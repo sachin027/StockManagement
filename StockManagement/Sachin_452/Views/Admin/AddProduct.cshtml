@@ -1,0 +1,50 @@
+﻿@model Sachin_452_Models.DBContext.Products
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutStockDashboardPage.cshtml";
+}
+
+@if (TempData["success"] != null)
+{
+    <script>
+            toastr.success('@TempData["success"]');
+    </script>
+}
+@if (TempData["error"] != null)
+{
+    <script>
+        toastr.error('@TempData["error"]');
+    </script>
+}
+
+<div class="card w-100">
+    <div class="card-body">
+        <form method="post">
+            <div>
+                <label>Product Name</label>
+                <input class="form-control" type="text" name="productName" />
+            </div>
+            <div>
+                <label>Description</label>
+                <input class="form-control" type="text" name="ProductDescription" />
+            </div>
+            <div>
+                <label>Type</label>
+                <input type="text" class="form-control" name="ProductType" />
+            </div>
+            <div>
+                <label>Quantity</label>
+                <input class="form-control" type="text" name="Quantity" />
+            </div>
+            <div>
+                <label>Price</label>
+                <input class="form-control" type="text" name="Price" />
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Add product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

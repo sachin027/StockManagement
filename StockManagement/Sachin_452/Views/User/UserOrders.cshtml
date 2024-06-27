@@ -1,0 +1,30 @@
+﻿@model List<Sachin_452_Models.DBContext.orders> 
+@{
+    ViewBag.Title = "UserOrders";
+    Layout = "~/Views/Shared/_LayoutUserPage.cshtml";
+}
+
+    <table id="orderRecordsTable" class="table table-striped table-bordered">
+        <span class="text-danger">Total Records: @ViewBag.totalcount</span>
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>TotalPrice</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.price</td>
+                    <td>@item.Products.productName</td>
+                    <td>@item.quantity</td>
+                    <td>@item.total</td>
+                    <td>@item.orderDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>

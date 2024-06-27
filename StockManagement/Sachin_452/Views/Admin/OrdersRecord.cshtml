@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OrdersRecord";
+    Layout = "~/Views/Shared/_LayoutStockDashboardPage.cshtml";
+}
+
+
+
+<div class="card" style="background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h5 style="margin-top: 0;">Filter Records</h5>
+    <form>
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>

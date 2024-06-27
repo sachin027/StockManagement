@@ -1,0 +1,27 @@
+﻿@model List<Sachin_452_Models.DBContext.Users>
+@{
+    ViewBag.Title = "SuppilerList";
+    Layout = "~/Views/Shared/_LayoutStockDashboardPage.cshtml";
+}
+
+<table class="table table-hover table-light">
+    <thead class="table-primary">
+        <tr>
+            <th>Supplier Name</th>
+            <th>Supplier Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.USerName</td>
+                <td>@d.EmailID</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

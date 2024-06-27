@@ -1,0 +1,58 @@
+﻿@model List<Sachin_452_Models.DBContext.orders>
+@{
+    ViewBag.Title = "OrdersRecordList";
+    Layout = "~/Views/Shared/_LayoutStockDashboardPage.cshtml";
+}
+<div class="card mx-auto w-50" style="background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h5 style="margin-top: 0;">Search Records</h5>
+    <form id="searchForm" method="post" action="@Url.Action("OrdersRecordList", "Admin")">
+        <div class="row">
+            <div class="form-group col-lg-6">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="StartDate" class="form-control" value="@ViewBag.startDate" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="EndDate" class="form-control" value="@ViewBag.endDate" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+
+    </form>
+        @if (ViewBag.startDate != null && ViewBag.endDate != null)
+        {
+        <p align="right" >
+            @Html.ActionLink("Generate PDF", "OrdersRecordListPdf", "Admin", new { startDate = ViewBag.startDate, endDate = ViewBag.endDate },null)
+        </p>
+        }
+</div>
+
+<div id="orderRecords" class="card mx-auto w-75 mt-4" style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <!-- Table to display order records -->
+    <table id="orderRecordsTable" class="table table-striped">
+        <span class="text-danger">Total Records: @Model.Count()</span>
+        <thead>
+            <tr>
+                <th>OrderId</th>
+                <th>Price</th>
+                <th>ProductId</th>
+                <th>TotalPrice</th>
+                <th>SupplierId</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.price</td>
+                    <td>@item.ProductId</td>
+                    <td>@item.total</td>
+                    <td>@item.UserId</td>
+                    <td>@item.orderDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

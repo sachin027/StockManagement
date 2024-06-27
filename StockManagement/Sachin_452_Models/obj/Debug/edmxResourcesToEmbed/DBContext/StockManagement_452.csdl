@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Sachin_452Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="orders" Relationship="Sachin_452Model.FK__orders__UserId__4F7CD00D" FromRole="Users" ToRole="orders" />
+  </EntityType>
+  <EntityContainer Name="Sachin_452Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Products" EntityType="Sachin_452Model.Products" />
+    <EntitySet Name="orders" EntityType="Sachin_452Model.orders" />
+    <AssociationSet Name="FK__orders__ProductI__5070F446" Association="Sachin_452Model.FK__orders__ProductI__5070F446">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders__UserId__4F7CD00D" Association="Sachin_452Model.FK__orders__UserId__4F7CD00D">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <EntitySet Name="cart" EntityType="Sachin_452Model.cart" />
+  </EntityContainer>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="orders" Relationship="Sachin_452Model.FK__orders__ProductI__5070F446" FromRole="Products" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="orderDate" Type="DateTime" Precision="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="productType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Sachin_452Model.FK__orders__ProductI__5070F446" FromRole="orders" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="Sachin_452Model.FK__orders__UserId__4F7CD00D" FromRole="orders" ToRole="Users" />
+    <Property Name="total" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__orders__ProductI__5070F446">
+    <End Type="Sachin_452Model.Products" Role="Products" Multiplicity="0..1" />
+    <End Type="Sachin_452Model.orders" Role="orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders__UserId__4F7CD00D">
+    <End Type="Sachin_452Model.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="Sachin_452Model.orders" Role="orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="cartId" />
+    </Key>
+    <Property Name="cartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="orderDate" Type="DateTime" Precision="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="productType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="productName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Int32" />
+  </EntityType>
+</Schema>
