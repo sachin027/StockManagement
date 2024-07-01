@@ -15,8 +15,10 @@ namespace Sachin_452_Models.ViewModel
         public string USerName { get; set; }
 
         [Required(ErrorMessage ="Emailid Required")]
+        [RegularExpression(@"^\\S+@\\S+\\.\\S+$", ErrorMessage ="Please enter valid Email id")]
         public string EmailID { get; set; }
         [Required(ErrorMessage ="Password required")]
+        [MaxLength(8, ErrorMessage ="password length max 8 characters")]
         public string Password { get; set; }
         [Required(ErrorMessage ="Confirm password required")]
         [Compare("Password" , ErrorMessage ="Password is not identical!")]

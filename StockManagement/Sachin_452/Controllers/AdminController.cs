@@ -28,7 +28,7 @@ namespace Sachin_452.Controllers
             return View();
         }
 
-        public async Task<ActionResult> ProductList()
+        public ActionResult ProductList()
         {
             try
             {
